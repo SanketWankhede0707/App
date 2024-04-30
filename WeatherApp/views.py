@@ -2,6 +2,7 @@ from django.shortcuts import render
 import requests
 import json
 
+API_KEY =""
 def kelvin_to_celsius(kelvin):
     return int(kelvin - 273.15)
 
@@ -11,9 +12,9 @@ def app(request):
     
     if city or (city_text and city_text.isalpha()):  # If a city is selected from dropdown or entered in text
         if city:  # If city is selected from dropdown
-            resp = requests.get(f'https://api.openweathermap.org/data/2.5/weather?q={city}&appid=1e20671d2ded6cd5bdfc4be85ca541de')
+            resp = requests.get(f'https://api.openweathermap.org/data/2.5/weather?q={city}&appid={API_KEY}')
         else:  # If city is entered in text
-            resp = requests.get(f'https://api.openweathermap.org/data/2.5/weather?q={city_text}&appid=1e20671d2ded6cd5bdfc4be85ca541de')
+            resp = requests.get(f'https://api.openweathermap.org/data/2.5/weather?q={city_text}&appid={API_KEY}')
         
         if resp.status_code == 200:
             data = resp.json()
