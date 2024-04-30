@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+    <title>Weather</title>
+    <style>
+        /* Apply padding to all elements for consistency */
+        *, *::before, *::after {
+            padding: 5px;
+            box-sizing: border-box;
+        }
+        body {
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: top;
+            background-image:url('static/img/1.avif');
+            width: 100%;
+            height: 100%;
+            font-family: Arial, Helvetica;
+            letter-spacing: 0.02em;
+            font-weight: 400;
+            -webkit-font-smoothing: antialiased; 
+            font-family: 'Arial', sans-serif; /* Suitable font for all text */
+            text-align: center;
+        }
+        form {
+            margin: 0 auto; /* Center the form */
+            width: 300px; /* Set a fixed width for the form */
+            backdrop-filter: blur(5px); /* Blur effect */
+            padding: 20px; /* Padding around the form */
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* Soft shadow for depth */
+            border-radius: 15px; /* More rounded corners */
+            background: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+        }
+        input[type="submit"] {
+            background-color: #FFA07A; /* A different color - Light Salmon */
+            color: white; /* White text color */
+            padding: 16px 24px; /* Increased padding for a larger button */
+            border: none; /* No border */
+            border-radius: 12px; /* Rounder edges for the button */
+            cursor: pointer; /* Pointer cursor on hover */
+            margin-top: 10px; /* Space above the button */
+            width: calc(100% - 32px); /* Full width minus padding */
+        }
+        input[type="submit"]:hover {
+            background-color: #FA8072; /* Slightly darker shade on hover */
+        }
+        input[type="text"] {
+            margin-top: 10px; /* Space above the text input */
+            width: calc(100% - 10px); /* Full width minus padding */
+        }
+        select {
+            width: calc(100% - 10px); /* Full width minus padding */
+        }
+        h1{
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1><b>Weather App</b></h1>
+    <form method="GET" action="">
+        <label>Select City from Dropdown or Enter City 
+            <select name="city">
+                <option value="">Select City</option>
+                <option value="Mumbai">Mumbai</option>
+                <option value="Mumbai">Nashik</option>
+                <option value="Delhi">Delhi</option>
+                <option value="Bangalore">Bangalore</option>
+                <option value="Hyderabad">Hyderabad</option>
+                <option value="Chennai">Chennai</option>
+                <option value="Kolkata">Kolkata</option>
+            </select>
+            <input type="text" name="city_text" placeholder="Or Enter City">
+        </label>
+        <input type="submit" value="Submit">
+    {% if city_name %}
+    <h3>Weather for {{ city_name }}</h3>
+    <p><b>Main:</b> {{ weather }}</p>
+    <p><b>Description:</b> {{ description }}</p>
+    <p><b>Temperature:</b> {{ temperature }}</p>
+    <p><b>Pressure:</b> {{ pressure }}</p>
+    <p><b>Humidity:</b> {{ humidity }}</p>
+    {% else %}
+    <p>{{ data }}</p>
+    {% endif %}
+</form>
+</body>
+</html>
